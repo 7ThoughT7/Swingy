@@ -1,9 +1,8 @@
 package swingy.services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import swingy.domain.User;
+import swingy.models.User;
 import swingy.forms.RegistrationForm;
 import swingy.repos.UserRepo;
 
@@ -11,7 +10,6 @@ import swingy.repos.UserRepo;
 @Component
 public class RegistrationServiceImpl implements RegistrationService{
 
-    private final PasswordEncoder passwordEncoder;
     private final UserRepo userRepo;
 
 
@@ -20,7 +18,8 @@ public class RegistrationServiceImpl implements RegistrationService{
         User user = User.builder()
                 .username(form.getUsername())
                 .email(form.getEmail())
-                .hashPassword(passwordEncoder.encode(form.getPassword()))
+                .role(User.Role.USER)
+                .password(form.getPassword())
                 .build();
 
         userRepo.save(user);
