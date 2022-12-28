@@ -1,5 +1,10 @@
 package swingy.models.heroClass;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("berserkType")
 public class Berserk extends TypeHero implements HeroClass{
 
     public Berserk() {

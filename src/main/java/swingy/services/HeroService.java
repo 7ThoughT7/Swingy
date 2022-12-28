@@ -4,5 +4,5 @@ import swingy.forms.HeroForm;
 
 public interface HeroService {
 
-    void addHero(String nameHero, String typeClass);
+    void addHero(String nameHero, String typeClass, String typeArtifact);
 }

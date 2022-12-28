@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import swingy.repos.HeroRepo;
 import swingy.repos.UserRepo;
 
@@ -22,9 +24,14 @@ public class MainController {
         return "greeting";
     }
 
-    @GetMapping("/main/{user_id}")
-    public String main(@PathVariable Integer user_id, Model model) {
+    @GetMapping("/main")
+    public String main(Model model) {
         model.addAttribute("heroes", heroRepo.findAll());
         return "/main";
+    }
+
+    @PostMapping("/main")
+    public String createHero() {
+        return "redirect:/createHero";
     }
 }

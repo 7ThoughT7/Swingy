@@ -24,22 +24,28 @@ public class HeroController {
     private final UserRepo userRepo;
 
     @GetMapping("/createHero")
-    public String createHero(@RequestParam Integer userId, Model model) {
+    public String createHero() {
 
-        User user = userRepo.findUserById(userId);
-        model.addAttribute("user", user);
+//        User user = userRepo.findUserById(userId);
+//        model.addAttribute("user", user);
 //        model.addAttribute("HClass", user.getHClass());
 
         return "/createHero";
     }
 
     @PostMapping("/createHero")
-    public String addCreateHero(@RequestParam Integer userId,
-                                @RequestParam String nameHero,
-                                @RequestParam String typeClass) {
+    public String addCreateHero(@RequestParam String nameHero,
+                                @RequestParam String typeClass,
+                                @RequestParam String typeArtifact) {
 
-        heroService.addHero(nameHero, typeClass);
+        heroService.addHero(nameHero, typeClass, typeArtifact);
+        return "redirect:/main";
+    }
 
-        return "redirect:/main/{user_id}";
+    @GetMapping("/hero")
+    public String hero(@RequestParam Integer heroId, Model model) {
+
+        model.addAttribute("hero", heroRepo.findHeroById(heroId));
+        return "/hero";
     }
 }

@@ -36,6 +36,6 @@ public class User{
     @Enumerated(value = EnumType.STRING)
     private HClass hClass;
 
-//    @OneToMany(fetch = FetchType.EAGER)
-//    private Set<Hero> heroes;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Hero> heroes;
 }

@@ -1,0 +1,29 @@
+<#import "parts/common.ftlh" as c>
+
+<@c.page>
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Класс</th>
+            <th>Уровень</th>
+            <th>Опыт</th>
+            <th>Атака</th>
+            <th>Защита</th>
+            <th>Здоровье</th>
+        </tr>
+        </thead>
+        <p></p>
+        <tbody>
+            <tr>
+                <td><b>${hero.getName()!}</b></td>
+                <td><i>${hero.getTypeHero().getNameClass()!}</i></td>
+                <td>${hero.getLevel()!}</td>
+                <td>${hero.getExpirience()!}</td>
+                <td>${hero.getAttack()!}</td>
+                <td>${hero.getDefence()!}</td>
+                <td>${hero.getHitPoint()!}</td>
+            </tr>
+        </tbody>
+    </table>
+</@c.page>

@@ -3,8 +3,9 @@
 <@c.page>
 <h1>Welcome!</h1>
 
-    <form action="/createHero" method="post">
-        <input type="hidden" value="${user_id!}" name="userId">
+    <form action="/main" method="post">
+
+<#--        <input type="hidden" value="${user_id!}" name="userId">-->
         <button type="submit">Создать нового персонажа</button>
     </form>
 <#--    <a href="{user_id}/createHero">Создать нового персонажа</a>-->
@@ -15,8 +16,9 @@
     <table>
         <thead>
         <tr>
-            <th>Имя персонажа</th>
-<#--            <th></th>-->
+            <th>Имя</th>
+            <th>Класс</th>
+            <th></th>
 <#--            <th align="left" width="100">Телефон</th>-->
 <#--            <th align="left" width="100">Email</th>-->
 <#--            <th align="left" width="50">Номер зачетки</th>-->
@@ -27,8 +29,13 @@
         <#list heroes as hero>
             <tr>
                 <td><b>${hero.name!}</b></td>
-<#--                <td><i>${student.address}</i></td>-->
-<#--                <td><i>${student.telephone}</i></td>-->
+                <td><i>${hero.getTypeHero().getNameClass()}</i></td>
+                <td>
+                    <form action="/hero" method="get">
+                        <input type="hidden" value="${hero.getId()!}" name="heroId">
+                        <button type="submit">Играть</button>
+                    </form>
+                </td>
 <#--                <td><i>${student.email}</i></td>-->
 <#--                <td><i>${student.countingNum}</i></td>-->
             </tr>

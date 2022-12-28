@@ -6,5 +6,5 @@ import swingy.models.User;
 
 public interface HeroRepo extends JpaRepository<Hero, Integer> {
 
-
+    Hero findHeroById(Integer id);
 }

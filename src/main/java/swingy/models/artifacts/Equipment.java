@@ -1,4 +1,4 @@
-package swingy.models.heroClass;
+package swingy.models.artifacts;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,30 +12,31 @@ import swingy.models.Hero;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "typeHero")
+@Table(name = "equip")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "th")
-public class TypeHero {
+@DiscriminatorColumn(name = "art")
+public class Equipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
 
-    private String nameClass;
+    private String nameArtifact;
     private Integer attack;
     private Integer defence;
     private Integer hitPoint;
 
-    @OneToOne(mappedBy = "typeHero")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "heroId")
     private Hero hero;
 
-    public String getNameClass() {
-        return nameClass;
+    public String getNameArtifact() {
+        return nameArtifact;
     }
 
-    public void setNameClass(String nameClass) {
-        this.nameClass = nameClass;
+    public void setNameArtifact(String nameArtifact) {
+        this.nameArtifact = nameArtifact;
     }
 
     public Integer getAttack() {

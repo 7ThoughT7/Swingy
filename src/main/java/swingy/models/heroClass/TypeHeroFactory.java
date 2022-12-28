@@ -2,7 +2,7 @@ package swingy.models.heroClass;
 
 public class TypeHeroFactory {
 
-    public static HeroClass newTypeHero(String type) {
+    public static TypeHero newTypeHero(String type) {
 
         String ARCHER = "Archer";
         String BERSERK = "Berserk";

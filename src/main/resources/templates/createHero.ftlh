@@ -7,25 +7,34 @@
 
     <form method="post" action="/createHero">
         <label>Имя:
-            <input name="nameHero" placeholder="Ввидите имя...">
+            <input type="text" name="nameHero" placeholder="Ввидите имя...">
+        </label>
+        <p></p>
+        <label>Выберите класс:
+            <div>
+                <label> <input type="radio" name="typeClass" value="Archer">Archer</label>
+            </div>
+            <div>
+                <label> <input type="radio" name="typeClass" value="Berserk">Berserk</label>
+            </div>
+            <div>
+                <label> <input type="radio" name="typeClass" value="Wizard">Wizard</label>
+            </div>
+        </label>
+        <p></p>
+        <label>Выберите экипировку:
+            <div>
+                <label> <input type="radio" name="typeArtifact" value="Weapon">Weapon</label>
+            </div>
+            <div>
+                <label> <input type="radio" name="typeArtifact" value="Armor">Armor</label>
+            </div>
+            <div>
+                <label> <input type="radio" name="typeArtifact" value="Helm">Helm</label>
+            </div>
         </label>
 
-        <label>Класс:
-<#--            <#list HClass as class>-->
-            <div>
-                <label> <input type="checkbox" name="typeClass">Archer</label>
-            </div>
-            <div>
-                <label> <input type="checkbox" name="typeClass">Berserk</label>
-            </div>
-            <div>
-                <label> <input type="checkbox" name="typeClass">Wizard</label>
-            </div>
-<#--            </#list>-->
-<#--            <button type="submit">Save</button>-->
-        </label>
-
-        <input type="hidden" value="${user.id!}" name="userId">
+<#--        <input type="hidden" value="${user.id!}" name="userId">-->
         <input type="submit" value="Создать">
     </form>
 </@c.page>
