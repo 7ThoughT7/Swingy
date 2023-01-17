@@ -18,7 +18,7 @@ import swingy.models.Hero;
 public class TypeHero {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -27,8 +27,7 @@ public class TypeHero {
     private Integer defence;
     private Integer hitPoint;
 
-    @OneToOne(mappedBy = "typeHero")
-    private Hero hero;
+
 
     public String getNameClass() {
         return nameClass;
@@ -62,11 +61,11 @@ public class TypeHero {
         this.hitPoint = hitPoint;
     }
 
-    public Hero getHero() {
-        return hero;
-    }
-
-    public void setHero(Hero hero) {
-        this.hero = hero;
-    }
+//    public Hero getHero() {
+//        return hero;
+//    }
+//
+//    public void setHero(Hero hero) {
+//        this.hero = hero;
+//    }
 }

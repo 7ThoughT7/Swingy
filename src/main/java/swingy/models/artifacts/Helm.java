@@ -1,16 +1,36 @@
 package swingy.models.artifacts;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import swingy.models.Hero;
 
+@Data
+@AllArgsConstructor
+@Builder
 @Entity
-@DiscriminatorValue("helmType")
-public class Helm extends Equipment implements Artifact{
+@Table(name = "equip")
+public class Helm{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    private String nameArtifact;
+    private Integer attack;
+    private Integer defence;
+    private Integer hitPoint;
+
+    @OneToOne(mappedBy = "helm")
+    private Hero hero;
 
     public Helm() {
-        setNameArtifact("Helm");
-        setAttack(0);
-        setDefence(0);
-        setHitPoint(5);
+        this.nameArtifact = "Шлем";
+        this.attack = 0;
+        this.defence = 0;
+        this.hitPoint = 5;
     }
 }

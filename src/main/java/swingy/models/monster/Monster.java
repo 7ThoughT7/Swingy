@@ -1,38 +1,29 @@
-package swingy.models.artifacts;
+package swingy.models.monster;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import swingy.models.Hero;
-
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "equip")
-public class Weapon{
+@Table(name = "monsters")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "ms")
+public class Monster {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    private String nameArtifact;
+    private String name;
+    private Integer level;
     private Integer attack;
     private Integer defence;
     private Integer hitPoint;
-
-    @OneToOne(mappedBy = "weapon")
-    private Hero hero;
-
-    public Weapon() {
-        this.nameArtifact = "Оружие";
-        this.attack = 5;
-        this.defence = 0;
-        this.hitPoint = 0;
-    }
-
 }

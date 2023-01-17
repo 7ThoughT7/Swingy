@@ -27,18 +27,16 @@
         <p></p>
         <tbody>
         <#list heroes as hero>
-            <tr>
-                <td><b>${hero.name!}</b></td>
-                <td><i>${hero.getTypeHero().getNameClass()}</i></td>
-                <td>
-                    <form action="/hero" method="get">
-                        <input type="hidden" value="${hero.getId()!}" name="heroId">
-                        <button type="submit">Играть</button>
-                    </form>
-                </td>
-<#--                <td><i>${student.email}</i></td>-->
-<#--                <td><i>${student.countingNum}</i></td>-->
-            </tr>
+                <tr>
+                    <td><b>${hero.name!}</b></td>
+                    <td><i>${hero.heroClass!}</i></td>
+                    <td>
+                        <form action="/hero/${hero.id}" method="get">
+<#--                            <input type="hidden" value="${hero.id}" name="heroId">-->
+                            <button type="submit">Выбрать</button>
+                        </form>
+                    </td>
+                </tr>
         <#else>
             Нет героев
         </#list>

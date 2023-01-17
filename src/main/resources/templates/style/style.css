@@ -1,0 +1,25 @@
+td {padding:10px}
+#person {background:#fcc}
+#pole {background:#ccf}
+.menu_table {
+    border: 1px solid green; /* Рамка вокруг таблицы */
+    margin: auto;
+}
+.game_table {
+    width: 1000px; /* Ширина таблицы */
+    height: 1000px;
+    border: 1px solid green; /* Рамка вокруг таблицы */
+    margin: auto; /* Выравниваем таблицу по центру окна  */
+}
+td, th {
+    padding: 3px; /* Поля вокруг содержимого таблицы */
+    border: 1px solid #000; /* Параметры рамки */
+}
+th {
+    background: #afd792; /* Цвет фона */
+    color: #333;  /* Цвет текста */
+}
+tbody td:hover {
+    background: #f3bd48; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+}
