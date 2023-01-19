@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import swingy.models.Hero;
 import swingy.repos.HeroRepo;
-import swingy.repos.UserRepo;
-import swingy.services.HeroService;
+import swingy.services.serviceRepo.HeroService;
 
 @RequiredArgsConstructor
 @Controller
@@ -51,12 +50,30 @@ public class HeroController {
     }
 
     @PostMapping("/hero/{heroId}")
-    public String fighting(@PathVariable Integer heroId) {
+    public String fighting(@PathVariable Integer heroId,
+                           @RequestParam String heroButton
+    ) {
 
         Hero hero = heroRepo.findHeroById(heroId);
-        heroService.addCoordinate(hero);
-        heroRepo.save(hero);
 
-        return "redirect:/fight/{heroId}";
+        if (heroButton.equals("Fight")) {
+            if (hero.getHitPoint() <= 0) {
+                return "redirect:/hero/{heroId}";
+            } else {
+                heroService.addCoordinate(hero);
+                heroRepo.save(hero);
+                return "redirect:/fight/{heroId}";
+            }
+        } else if (heroButton.equals("50")) {
+            if (hero.getPotion50() > 0) {
+                heroService.healing(hero, 50);
+            }
+        } else if (heroButton.equals("30")) {
+            if (hero.getPotion30() > 0) {
+                heroService.healing(hero, 30);
+            }
+        }
+
+        return "redirect:/hero/{heroId}";
     }
 }

@@ -35,4 +35,10 @@ public class Weapon{
         this.hitPoint = 0;
     }
 
+    public Weapon(Integer level) {
+        this.nameArtifact = "Оружие";
+        this.attack = 5 * level;
+        this.defence = level;
+        this.hitPoint = 0;
+    }
 }

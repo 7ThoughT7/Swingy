@@ -34,6 +34,13 @@ public class Armor{
         this.hitPoint = 0;
     }
 
+    public Armor(Integer level) {
+        this.nameArtifact = "Броня";
+        this.attack = 0;
+        this.defence = 5 * level;
+        this.hitPoint = level;
+    }
+
     public Hero getHero() {
         return hero;
     }

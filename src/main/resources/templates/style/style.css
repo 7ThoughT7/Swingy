@@ -1,25 +1,68 @@
-td {padding:10px}
-#person {background:#fcc}
-#pole {background:#ccf}
+
+.form_style {
+    width: 100px;
+    height: 25px;
+    margin: auto;
+}
+.bar_table {
+    margin: auto;
+    }
+.button_big {
+    width: 200px;
+    height: 25px;
+}
+.button_way {
+    width: 100px;
+    height: 25px;
+}
+.menu_way {
+    border: 0; /* Рамка вокруг таблицы */
+    margin: auto;
+}
 .menu_table {
     border: 1px solid green; /* Рамка вокруг таблицы */
     margin: auto;
 }
 .game_table {
-    width: 1000px; /* Ширина таблицы */
-    height: 1000px;
+    /*width: 1000px; !* Ширина таблицы *!*/
+    /*height: 1000px; !* Высота таблицы *!*/
     border: 1px solid green; /* Рамка вокруг таблицы */
     margin: auto; /* Выравниваем таблицу по центру окна  */
+    /*table-layout: fixed; !* Ячейки фиксированной ширины *!*/
 }
-td, th {
-    padding: 3px; /* Поля вокруг содержимого таблицы */
+td.margin_auto {
+    margin: auto;
+}
+th.menu_th {
+    padding: 1px; /* Поля вокруг содержимого таблицы */
     border: 1px solid #000; /* Параметры рамки */
+    width: 70px;
+    height: 25px;
+    overflow: hidden;
+}
+td.menu_td {
+    padding: 1px; /* Поля вокруг содержимого таблицы */
+    border: 1px solid #000; /* Параметры рамки */
+    width: 70px;
+    height: 25px;
+    overflow: hidden;
+}
+td.game {
+    padding: 1px; /* Поля вокруг содержимого таблицы */
+    border: 1px solid #000; /* Параметры рамки */
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
 }
 th {
     background: #afd792; /* Цвет фона */
     color: #333;  /* Цвет текста */
 }
-tbody td:hover {
-    background: #f3bd48; /* Цвет фона при наведении */
-    color: #fff; /* Цвет текста при наведении */
+/*tbody td:hover {*/
+/*    background: #f3bd48; !* Цвет фона при наведении *!*/
+/*    color: #fff; !* Цвет текста при наведении *!*/
+/*}*/
+img.Berserk5 {
+    width: 25px;
+    height: 25px;
 }

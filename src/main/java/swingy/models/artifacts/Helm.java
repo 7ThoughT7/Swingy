@@ -33,4 +33,11 @@ public class Helm{
         this.defence = 0;
         this.hitPoint = 5;
     }
+
+    public Helm(Integer level) {
+        this.nameArtifact = "Шлем";
+        this.attack = level;
+        this.defence = 0;
+        this.hitPoint = 5 * level;
+    }
 }

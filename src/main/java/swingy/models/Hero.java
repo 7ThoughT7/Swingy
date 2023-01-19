@@ -27,6 +27,9 @@ public class Hero {
     private Integer attack;
     private Integer defence;
     private Integer hitPoint;
+    private Integer hitPointMax;
+    private Integer potion30;
+    private Integer potion50;
     private Integer coordinateX;
     private Integer coordinateY;
     private Integer sizeMap;

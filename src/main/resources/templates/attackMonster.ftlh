@@ -1,5 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
+<style> <#include "style/style.css"> </style>
+
 <@c.page>
 
     <table class="menu_table">
@@ -28,7 +30,7 @@
     </table>
     <p></p>
 
-    <table class="div_font">
+    <table class="bar_table">
         <tbody>
         <tr>
             <td><b>На Вас напал ${monster.name}</b></td>
@@ -97,47 +99,47 @@
 <#--        </#list>-->
 <#--        </tbody>-->
 <#--    </table>-->
-    <style>
-        .div_font {
-            margin: auto;
-        }
-        .button_way {
-            width: 70px;
-            height: 25px;
-        }
-        .menu_way {
-            border: 0; /* Рамка вокруг таблицы */
-            margin: auto;
-        }
-        .menu_table {
-            border: 1px solid green; /* Рамка вокруг таблицы */
-            margin: auto;
-        }
-        .game_table {
-            /*width: 1000px; !* Ширина таблицы *!*/
-            /*height: 1000px; !* Высота таблицы *!*/
-            border: 1px solid green; /* Рамка вокруг таблицы */
-            margin: auto; /* Выравниваем таблицу по центру окна  */
-            /*table-layout: fixed; !* Ячейки фиксированной ширины *!*/
-        }
-        td.game {
-            padding: 1px; /* Поля вокруг содержимого таблицы */
-            border: 1px solid #000; /* Параметры рамки */
-            width: 25px;
-            height: 25px;
-            overflow: hidden;
-        }
-        th {
-            background: #afd792; /* Цвет фона */
-            color: #333;  /* Цвет текста */
-        }
-        tbody td:hover {
-            background: #f3bd48; /* Цвет фона при наведении */
-            color: #fff; /* Цвет текста при наведении */
-        }
-        img.Berserk5 {
-            width: 25px;
-            height: 25px;
-        }
-    </style>
+<#--    <style>-->
+<#--        .div_font {-->
+<#--            margin: auto;-->
+<#--        }-->
+<#--        .button_way {-->
+<#--            width: 70px;-->
+<#--            height: 25px;-->
+<#--        }-->
+<#--        .menu_way {-->
+<#--            border: 0; /* Рамка вокруг таблицы */-->
+<#--            margin: auto;-->
+<#--        }-->
+<#--        .menu_table {-->
+<#--            border: 1px solid green; /* Рамка вокруг таблицы */-->
+<#--            margin: auto;-->
+<#--        }-->
+<#--        .game_table {-->
+<#--            /*width: 1000px; !* Ширина таблицы *!*/-->
+<#--            /*height: 1000px; !* Высота таблицы *!*/-->
+<#--            border: 1px solid green; /* Рамка вокруг таблицы */-->
+<#--            margin: auto; /* Выравниваем таблицу по центру окна  */-->
+<#--            /*table-layout: fixed; !* Ячейки фиксированной ширины *!*/-->
+<#--        }-->
+<#--        td.game {-->
+<#--            padding: 1px; /* Поля вокруг содержимого таблицы */-->
+<#--            border: 1px solid #000; /* Параметры рамки */-->
+<#--            width: 25px;-->
+<#--            height: 25px;-->
+<#--            overflow: hidden;-->
+<#--        }-->
+<#--        th {-->
+<#--            background: #afd792; /* Цвет фона */-->
+<#--            color: #333;  /* Цвет текста */-->
+<#--        }-->
+<#--        tbody td:hover {-->
+<#--            background: #f3bd48; /* Цвет фона при наведении */-->
+<#--            color: #fff; /* Цвет текста при наведении */-->
+<#--        }-->
+<#--        img.Berserk5 {-->
+<#--            width: 25px;-->
+<#--            height: 25px;-->
+<#--        }-->
+<#--    </style>-->
 </@c.page>

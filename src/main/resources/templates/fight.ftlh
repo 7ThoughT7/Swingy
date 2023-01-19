@@ -1,5 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
+<style> <#include "style/style.css"> </style>
+
 <@c.page>
 
     <table class="menu_table">
@@ -16,13 +18,13 @@
         </thead>
         <tbody>
         <tr>
-            <td class="game"><b>${hero.name!}</b></td>
-            <td class="game"><i>${hero.heroClass!}</i></td>
-            <td class="game">${hero.level!}</td>
-            <td class="game">${hero.expirience!}</td>
-            <td class="game">${hero.attack!}</td>
-            <td class="game">${hero.defence!}</td>
-            <td class="game">${hero.hitPoint!}</td>
+            <td class="menu_td"><b>${hero.name!}</b></td>
+            <td class="menu_td"><i>${hero.heroClass!}</i></td>
+            <td class="menu_td">${hero.level!}</td>
+            <td class="menu_td">${hero.expirience!}</td>
+            <td class="menu_td">${hero.attack!}</td>
+            <td class="menu_td">${hero.defence!}</td>
+            <td class="menu_td">${hero.hitPoint!}</td>
         </tr>
         </tbody>
     </table>
@@ -68,7 +70,7 @@
             <tr>
                 <#list 1..hero.sizeMap as y>
                     <#if x = hero.coordinateX && y = hero.coordinateY>
-                        <td id='person' class="game"><img src="images/Berserk5.gif" width="25" height="25" class="Berserk5"/></td>
+                        <td id='person' class="game"><img src="images/Berserk21.jpeg" width="25" height="25" class="Berserk5"/></td>
                     <#--                        <#elseif-->
                     <#else>
                         <td id='cell' class="game"></td>
@@ -78,60 +80,26 @@
         </#list>
         </tbody>
     </table>
-    <style>
-        /*#person {background:#fcc}*/
-        /*#cell {background:#ccf}*/
-        .button_way {
-            width: 70px;
-            height: 25px;
-        }
-        .menu_way {
-            border: 0; /* Рамка вокруг таблицы */
-            margin: auto;
-        }
-        .menu_table {
-            border: 1px solid green; /* Рамка вокруг таблицы */
-            margin: auto;
-        }
-        .game_table {
-            /*width: 1000px; !* Ширина таблицы *!*/
-            /*height: 1000px; !* Высота таблицы *!*/
-            border: 1px solid green; /* Рамка вокруг таблицы */
-            margin: auto; /* Выравниваем таблицу по центру окна  */
-            /*table-layout: fixed; !* Ячейки фиксированной ширины *!*/
-        }
-        td.game {
-            padding: 1px; /* Поля вокруг содержимого таблицы */
-            border: 1px solid #000; /* Параметры рамки */
-            width: 25px;
-            height: 25px;
-            overflow: hidden;
-        }
-        th {
-            background: #afd792; /* Цвет фона */
-            color: #333;  /* Цвет текста */
-        }
-        tbody td:hover {
-            background: #f3bd48; /* Цвет фона при наведении */
-            color: #fff; /* Цвет текста при наведении */
-        }
-        img.Berserk5 {
-            width: 25px;
-            height: 25px;
-        }
-        /*td.cell_zone_size {*/
-        /*    width: 20px;*/
-        /*    height: 20px;*/
-        /*}*/
-    </style>
 
-<#--    <script type="text/javascript">-->
-<#--        function ChangePlace(x,y) {-->
-<#--            // document.getElementById(y).innerHTML = document.getElementById(x).innerHTML;-->
-<#--            -->
-<#--        }-->
-<#--    </script>-->
+    <p></p>
 
-
+    <table class="menu_way">
+        <tbody>
+        <tr>
+            <td>
+                <form action="/hero/${hero.id}" method="get">
+                    <input type="hidden" value="Hero" name="but">
+                    <button type="submit" class="button_way">К герою</button>
+                </form>
+            </td>
+            <td>
+                <form action="/main" method="get">
+                    <input type="hidden" value="Main" name="but">
+                    <button type="submit" class="button_way">На главную</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </@c.page>

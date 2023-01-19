@@ -1,9 +1,6 @@
 package swingy.controller;
 
-import ch.qos.logback.core.sift.AppenderFactoryUsingSiftModel;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,19 +8,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import swingy.models.Hero;
+import swingy.models.artifacts.Armor;
+import swingy.models.artifacts.Helm;
+import swingy.models.artifacts.Weapon;
 import swingy.models.monster.Monster;
 import swingy.models.monster.MonsterFactory;
 import swingy.repos.HeroRepo;
 import swingy.repos.MonsterRepo;
-import swingy.services.FightService;
-import swingy.services.MonsterService;
+import swingy.services.serviceRepo.FightService;
+import swingy.services.serviceRepo.MonsterService;
 
 import java.util.Random;
 
 @RequiredArgsConstructor
 @Controller
 public class FightController {
-
+    Random random = new Random();
     private final HeroRepo heroRepo;
     private final MonsterRepo monsterRepo;
     private final FightService fightService;
@@ -41,7 +41,6 @@ public class FightController {
     public String click(@PathVariable Integer heroId,
                         @RequestParam String way) {
 
-        Random random = new Random();
         Hero hero = heroRepo.findHeroById(heroId);
         fightService.changePosition(hero, way);
         if (fightService.checkWin(hero)) {
@@ -51,14 +50,6 @@ public class FightController {
             return "redirect:/attackMonster/{heroId}";
         }
         return "redirect:/fight/{heroId}";
-    }
-
-    @GetMapping("/fightWin/{heroId}")
-    public String fightWin(Model model,
-                           @PathVariable Integer heroId
-    ) {
-        model.addAttribute("hero", heroRepo.findHeroById(heroId));
-        return "/fightWin";
     }
 
     @GetMapping("/attackMonster/{heroId}")
@@ -113,18 +104,16 @@ public class FightController {
         Hero hero = heroRepo.findHeroById(heroId);
         Monster monster = monsterRepo.findMonsterById(monsterId);
         if (attack.equals("Attack")) {
-            hero.setHitPoint(hero.getHitPoint() - (monster.getAttack() - hero.getDefence()));
-            heroRepo.save(hero);
-            monster.setHitPoint(monster.getHitPoint() - (hero.getAttack() - monster.getDefence()));
-            monsterRepo.save(monster);
+
+            fightService.attack(hero, monster);
             if (hero.getHitPoint() <= 0) {
                 return "redirect:/fightLose/{heroId}";
             } else if (monster.getHitPoint() <= 0) {
                 return "redirect:/fightWin/{heroId}";
             }
         } else if (attack.equals("Next")) {
-            hero.setHitPoint(hero.getHitPoint() - (monster.getAttack() - hero.getDefence()));
-            heroRepo.save(hero);
+
+            fightService.nextStep(hero, monster);
             if (hero.getHitPoint() <= 0) {
                 return "redirect:/fightLose/{heroId}";
             } else if (monster.getHitPoint() <= 0) {
@@ -140,6 +129,36 @@ public class FightController {
                            @PathVariable Integer heroId
     ) {
         model.addAttribute("hero", heroRepo.findHeroById(heroId));
+        return "/fightLose";
+    }
+
+    @GetMapping("/fightWin/{heroId}")
+    public String fightWinG(Model model,
+                           @PathVariable Integer heroId
+    ) {
+        Hero hero = heroRepo.findHeroById(heroId);
+        model.addAttribute("hero", hero);
+
+        if (random.nextBoolean()) {
+            int equip = random.nextInt(2);
+            if (equip == 0) {
+                model.addAttribute("armor", new Armor(hero.getLevel()));
+            } else if (equip == 1) {
+                model.addAttribute("helm", new Helm(hero.getLevel()));
+            } else if (equip == 2) {
+                model.addAttribute("weapon", new Weapon(hero.getLevel()));
+            }
+        }
+        model.addAttribute("potion", random.nextInt(2));
         return "/fightWin";
+    }
+
+    @PostMapping("/fightWin/{heroId}")
+    public String fightWinP(@PathVariable Integer heroId,
+                            @RequestParam String equip
+    ) {
+        fightService.saveEquip(heroRepo.findHeroById(heroId), equip);
+
+        return "redirect:/fight/{heroId}";
     }
 }

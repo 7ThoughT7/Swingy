@@ -1,5 +1,7 @@
 <#import "parts/common.ftlh" as c>
 
+<style> <#include "style/style.css"> </style>
+
 <@c.page>
     <table class="menu_table">
         <thead>
@@ -15,20 +17,20 @@
         </thead>
         <tbody>
         <tr>
-            <td class="game"><b>${hero.name!}</b></td>
-            <td class="game"><i>${hero.heroClass!}</i></td>
-            <td class="game">${hero.level!}</td>
-            <td class="game">${hero.expirience!}</td>
-            <td class="game">${hero.attack!}</td>
-            <td class="game">${hero.defence!}</td>
-            <td class="game">${hero.hitPoint!}</td>
+            <td class="menu_td"><b>${hero.name!}</b></td>
+            <td class="menu_td"><i>${hero.heroClass!}</i></td>
+            <td class="menu_td">${hero.level!}</td>
+            <td class="menu_td">${hero.expirience!}</td>
+            <td class="menu_td">${hero.attack!}</td>
+            <td class="menu_td">${hero.defence!}</td>
+            <td class="menu_td">${hero.hitPoint!}</td>
         </tr>
         </tbody>
     </table>
 
     <p></p>
 
-    <table>
+    <table class="bar_table">
         <tbody>
         <tr>
             <td><b>Вы победили!!!</b></td>
@@ -36,65 +38,104 @@
         </tbody>
     </table>
 
+    <#if armor??>
+        <table class="menu_table">
+            <caption><h3>Из монстра выпало</h3></caption>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Атака</th>
+                <th>Защита</th>
+                <th>Здоровье</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="menu_td">${armor.nameArtifact}</td>
+                <td class="menu_td">${armor.attack}</td>
+                <td class="menu_td">${armor.defence}</td>
+                <td class="menu_td">${armor.hitPoint}</td>
+                <td>
+                    <form action="/fightWin/${hero.id}" method="post" class="form_style">
+                        <input type="hidden" value="Armor" name="equip">
+                        <button type="submit" class="button_way">Взять</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    <#elseif helm??>
+        <table class="menu_table">
+            <caption><h3>Из монстра выпало</h3></caption>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Атака</th>
+                <th>Защита</th>
+                <th>Здоровье</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="menu_td">${helm.nameArtifact}</td>
+                <td class="menu_td">${helm.attack}</td>
+                <td class="menu_td">${helm.defence}</td>
+                <td class="menu_td">${helm.hitPoint}</td>
+                <td>
+                    <form action="/fightWin/${hero.id}" method="post" class="form_style">
+                        <input type="hidden" value="Helm" name="equip">
+                        <button type="submit" class="button_way">Взять</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    <#elseif weapon??>
+        <table class="menu_table">
+            <caption><h3>Из монстра выпало</h3></caption>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Атака</th>
+                <th>Защита</th>
+                <th>Здоровье</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="menu_td">${weapon.nameArtifact}</td>
+                <td class="menu_td">${weapon.attack}</td>
+                <td class="menu_td">${weapon.defence}</td>
+                <td class="menu_td">${weapon.hitPoint}</td>
+                <td>
+                    <form action="/fightWin/${hero.id}" method="post" class="form_style">
+                        <input type="hidden" value="Weapon" name="equip">
+                        <button type="submit" class="button_way">Взять</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </#if>
+
     <p></p>
     <table class="menu_way">
         <tbody>
         <tr>
+            <td>
+                <form action="/fight/${hero.id}" method="get">
+                    <input type="hidden" value="Fight" name="but">
+                    <button type="submit" class="button_way">В бой</button>
+                </form>
+            </td>
             <td>
                 <form action="/hero/${hero.id}" method="get">
                     <input type="hidden" value="Hero" name="but">
                     <button type="submit" class="button_way">К герою</button>
                 </form>
             </td>
-            <td>
-                <form action="/main" method="get">
-                    <input type="hidden" value="Main" name="but">
-                    <button type="submit" class="button_way">На главную</button>
-                </form>
-            </td>
-<#--            <td>-->
-<#--                <form action="/fight/${hero.id}" method="post">-->
-<#--                    <input type="hidden" value="Right" name="way">-->
-<#--                    <button type="submit" class="button_way">Вправо</button>-->
-<#--                </form>-->
-<#--            </td>-->
-<#--            <td>-->
-<#--                <form action="/fight/${hero.id}" method="post">-->
-<#--                    <input type="hidden" value="Down" name="way">-->
-<#--                    <button type="submit" class="button_way">Вниз</button>-->
-<#--                </form>-->
-<#--            </td>-->
         </tr>
         </tbody>
     </table>
 
-    <style>
-        .button_way {
-            width: 70px;
-            height: 25px;
-        }
-        .menu_way {
-            border: 0; /* Рамка вокруг таблицы */
-            margin: auto;
-        }
-        .menu_table {
-            border: 1px solid green; /* Рамка вокруг таблицы */
-            margin: auto;
-        }
-        td.game {
-            padding: 1px; /* Поля вокруг содержимого таблицы */
-            border: 1px solid #000; /* Параметры рамки */
-            width: 25px;
-            height: 25px;
-            overflow: hidden;
-        }
-        th {
-            background: #afd792; /* Цвет фона */
-            color: #333;  /* Цвет текста */
-        }
-        tbody td:hover {
-            background: #f3bd48; /* Цвет фона при наведении */
-            color: #fff; /* Цвет текста при наведении */
-        }
-    </style>
 </@c.page>

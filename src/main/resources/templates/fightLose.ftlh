@@ -16,13 +16,13 @@
         </thead>
         <tbody>
         <tr>
-            <td class="game"><b>${hero.name!}</b></td>
-            <td class="game"><i>${hero.heroClass!}</i></td>
-            <td class="game">${hero.level!}</td>
-            <td class="game">${hero.expirience!}</td>
-            <td class="game">${hero.attack!}</td>
-            <td class="game">${hero.defence!}</td>
-            <td class="game">${hero.hitPoint!}</td>
+            <td class="menu_td"><b>${hero.name!}</b></td>
+            <td class="menu_td"><i>${hero.heroClass!}</i></td>
+            <td class="menu_td">${hero.level!}</td>
+            <td class="menu_td">${hero.expirience!}</td>
+            <td class="menu_td">${hero.attack!}</td>
+            <td class="menu_td">${hero.defence!}</td>
+            <td class="menu_td">${hero.hitPoint!}</td>
         </tr>
         </tbody>
     </table>

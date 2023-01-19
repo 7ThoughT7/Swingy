@@ -1,45 +1,60 @@
 <#import "parts/common.ftlh" as c>
 
+<style> <#include "style/style.css"> </style>
+
 <@c.page>
-<h1>Welcome!</h1>
 
-    <form action="/main" method="post">
-
-<#--        <input type="hidden" value="${user_id!}" name="userId">-->
-        <button type="submit">Создать нового персонажа</button>
-    </form>
-<#--    <a href="{user_id}/createHero">Создать нового персонажа</a>-->
-    <p></p>
-
-    <div>Список персонажей:</div>
-    <p></p>
-    <table>
-        <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Класс</th>
-            <th></th>
-<#--            <th align="left" width="100">Телефон</th>-->
-<#--            <th align="left" width="100">Email</th>-->
-<#--            <th align="left" width="50">Номер зачетки</th>-->
-        </tr>
-        </thead>
-        <p></p>
+    <table class="bar_table">
         <tbody>
-        <#list heroes as hero>
-                <tr>
-                    <td><b>${hero.name!}</b></td>
-                    <td><i>${hero.heroClass!}</i></td>
-                    <td>
-                        <form action="/hero/${hero.id}" method="get">
-<#--                            <input type="hidden" value="${hero.id}" name="heroId">-->
-                            <button type="submit">Выбрать</button>
-                        </form>
-                    </td>
-                </tr>
-        <#else>
-            Нет героев
-        </#list>
+        <tr><td class="margin_auto"><h1>Добро пожаловать в игру</h1></td></tr>
         </tbody>
     </table>
+
+    <table class="bar_table">
+        <tbody>
+        <tr>
+            <td class="margin_auto">
+                <form action="/main" method="post" class="form_margin">
+                    <button type="submit" class="button_big">Создать нового героя</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p></p>
+    <p></p>
+
+        <table class="menu_table">
+            <caption>Список героев</caption>
+            <thead>
+            <tr>
+                <th class="menu_th">Имя</th>
+                <th class="menu_th">Класс</th>
+                <th></th>
+            </tr>
+            </thead>
+            <p></p>
+            <tbody>
+            <#list heroes as hero>
+                    <tr>
+                        <td class="menu_td"><b>${hero.name!}</b></td>
+                        <td class="menu_td"><i>${hero.heroClass!}</i></td>
+                        <td class="menu_td">
+                            <form action="/hero/${hero.id}" method="get" class="form_style">
+                                <button type="submit" class="button_way">Выбрать</button>
+                            </form>
+                        </td>
+                    </tr>
+            <#else>
+                <table class="menu_way">
+                    <tbody>
+                    <tr>
+                        <td><h3>Нет героев</h3></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </#list>
+            </tbody>
+        </table>
 </@c.page>
